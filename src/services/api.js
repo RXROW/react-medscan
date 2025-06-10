@@ -94,3 +94,10 @@ export const DOCTOR_RECOMMENDATION = {
   },
   Get_Specific_Doctor_By_Id: (doctorId) => `doctorRecommendation/${doctorId}`,
 };
+
+
+export const PATIENT_PROFILE = {
+  Update_Patient_Profile: (patientId) => `patient/${patientId}`,
+  Delete_Patient_Profile: (patientId) => `patient/${patientId}`,
+};
+

@@ -20,8 +20,7 @@ import DoctorProfile from "./pages/Doctor/DrProfile/DrProfile";
 import Settings from "./pages/settings/Settings";
 import MasterLayout from "./components/MasterLayout/MasterLayout";
 import { Toaster } from 'react-hot-toast';
-import AuthContextProvider from "./Context/AuthContext";
-import MedicalForm from "./pages/Patient/MedicalAdvices/MedicalAdvices";
+import AuthContextProvider from "./Context/AuthContext"; 
 import MedicalHistory from "./pages/Patient/MedicalHistory/MedicalHistory";
 import DoctorRecommendation from "./pages/Patient/DrRecommendation/DrRecommendation";
 import PatientSettings from "./pages/Patient/PatientSettings/PatientSettings";
@@ -30,7 +29,7 @@ import PatientProfile from "./pages/Patient/PatientProfile/PatientProfile";
 import DrSettings from "./pages/Doctor/DrSettings/DrSettings";
 import Madvices from "./pages/Patient/MAdvice/MAdvice";
 import MedicalAdvices from "./pages/Patient/MedicalAdvices/MedicalAdvices";
-
+ 
 function App() {
   return (
     <AuthContextProvider>
@@ -66,7 +65,9 @@ function App() {
           <Route path="/patient-scans" element={<PatientScans />} />
           <Route path="/patient-settings" element={<PatientSettings />} />
           <Route path="/patient-profile" element={<PatientProfile />} />
+         
           <Route path="/madvices" element={<Madvices />} />
+
 
 
         </Route>
