@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../PatientProfile/PatientProfile.module.css";
-import drImg from "https://img.freepik.com/premium-photo/marketing-manager-digital-avatar-generative-ai_934475-9082.jpg";
-
+import { FaUserMd } from "react-icons/fa";
 
 const PatientProfile = () => {
   const [profile] = useState({
@@ -16,12 +15,14 @@ const PatientProfile = () => {
   });
 
   return (
-    <div className={styles.wrapper}> 
-      <div className={styles.layout}> 
+    <div className={styles.wrapper}>
+      <div className={styles.layout}>
         <div className={styles.mainContent}>
           <div className={styles.container}>
             <div className={styles.header}>
-              <img src={drImg} alt="Doctor" className={styles.avatar} />
+              <div className={styles.avatar}>
+                <FaUserMd size={50} />
+              </div>
               <div className={styles.profileInfo}>
                 <h2>
                   DR {profile.firstName} {profile.lastName}
