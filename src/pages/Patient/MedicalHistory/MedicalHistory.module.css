@@ -1,0 +1,378 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 60px);
+  font-size: 85%;
+}
+
+.mainContent {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Left Column */
+.leftColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+}
+
+.userProfileCard {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  width: 280px;
+  margin-left: 15px;
+}
+
+.profileImage {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #007bff;
+  margin-bottom: 8px;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.userAge {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.updateButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.updateButton:hover {
+  background-color: #0056b3;
+}
+
+.informationSection {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.informationSection h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.infoLabel {
+  color: #666;
+  font-weight: 500;
+}
+
+.infoValue {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Right Column */
+.rightColumn {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.metricCard {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  min-width: 140px;
+}
+
+.metricIcon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 5px;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.metricTitle {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.metricValue {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1px;
+}
+
+.metricUnit {
+  font-size: 10px;
+  color: #999;
+  margin-left: 4px;
+}
+
+.metricStatus {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #28a745;
+  background-color: #e6ffe6;
+}
+
+.bloodSugar .metricStatus,
+.heartRate .metricStatus,
+.bloodPressure .metricStatus,
+.bodyTemperature .metricStatus {
+  color: #28a745;
+  background-color: #e6ffe6;
+}
+
+/* Test Reports & Prescriptions */
+.testReportsSection,
+.prescriptionsSection {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.prescriptionsSection h3 {
+  font-size: 16px;
+  color: #333;
+  padding: 4px 0;
+  width: 110px;
+  text-align: center;
+}
+
+.addPrescriptionButton {
+  background-color: whitesmoke;
+  color: #3E80C6;
+  border: 1px solid #1f2020;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.bloodSugar .metricIcon {
+  background-image: url("../../../assets/images/patientImages/1.png");
+}
+
+.heartRate .metricIcon {
+  background-image: url("../../../assets/images/patientImages/2.png");
+}
+
+.bloodPressure .metricIcon {
+  background-image: url("../../../assets/images/patientImages/3.png");
+}
+
+.bodyTemperature .metricIcon {
+  background-image: url("../../../assets/images/patientImages/4.png");
+}
+
+.testReportsSection h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
+  background-color: #F8F8F8;
+  width: 110px;
+  text-align: center;
+  padding-top: 4px;
+  border-radius: 6px;
+}
+
+.testReportIcon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 4px;
+}
+
+.testReportsCombinedCard {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+}
+
+.testReportDetails {
+  flex: 1;
+  min-width: 220px;
+}
+
+.testReportTitle {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.testReportTime {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.testReportDescription {
+  font-size: 13px;
+  color: #333;
+}
+
+/* Prescription Items */
+.prescriptionItem {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 6px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prescriptionIcon {
+  width: 30px;
+  height: 30px;
+  background-color: #e0f2f7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.prescriptionName {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  flex-grow: 1;
+}
+
+.prescriptionDate,
+.prescriptionDuration {
+  font-size: 12px;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .mainContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    width: 100%;
+    max-width: 650px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 8px;
+  }
+
+  .userProfileCard,
+  .informationSection,
+  .metricCard,
+  .testReportsSection,
+  .prescriptionsSection {
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricValue {
+    font-size: 17px;
+  }
+
+  .userName {
+    font-size: 16px;
+  }
+
+  .informationSection h3,
+  .testReportsSection h3,
+  .prescriptionsSection h3 {
+    font-size: 13px;
+  }
+
+  .infoRow,
+  .testReportItem,
+  .prescriptionItem {
+    font-size: 12px;
+  }
+}

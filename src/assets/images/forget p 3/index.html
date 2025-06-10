@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MEDSCAN</title>
+    <link rel="icon" href="Iconproject.icon">
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="toggle-container">
+                <div class="toggle-option selected" id="patient" >
+                    Patient
+                    <img src="Vector (1).png" alt="Patient">
+                </div>
+                <div class="toggle-option unselected" id="doctor"  onclick="goToPage('file:/C:/Users/abanob/OneDrive/Desktop/updated%20grag/English/forget/doctor/forget%20d%203/index.html')">
+                    Doctor
+                    <img src="healthicons_doctor-male.png" alt="Doctor">
+                </div>
+            </div>
+
+            <h1>Set a new password</h1>
+
+            <p>Your previous password has been reseted. Please set a new <br>password for your account.</p>
+
+            <form id="passwordForm">
+                <div class="password-field">
+                    <label for="create-password">Create Password</label>
+                    <input type="password" id="create-password" required>
+                    <span class="eye-icon" onclick="togglePassword('create-password')"><img src="eye_with_black_diagonal_line.png" alt="Show Password"></span>
+                </div>
+
+                <div class="password-field">
+                    <label for="reenter-password">Re-enter Password</label>
+                    <input type="password" id="reenter-password" required>
+                    <span class="eye-icon" onclick="togglePassword('reenter-password')"><img src="eye_with_black_diagonal_line.png" alt="Show Password"></span>
+                </div>
+                <button type="submit" class="set-password-btn">Set password</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="image-section">
+        <img src="Smiley female doctor posing in suit and stethoscope (1).png" alt="">
+    </div>
+
+    <!-- نقلت السكربت للأسفل لضمان تحميل DOM أولاً -->
+    <script src="save.js"></script>
+</body>
+</html>

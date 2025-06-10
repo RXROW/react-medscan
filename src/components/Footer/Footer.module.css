@@ -1,0 +1,175 @@
+.ctaSection {
+  background: linear-gradient(135deg, #1b2a3f 0%, #2c3e50 100%);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+  opacity: 0.1;
+}
+
+.ctaSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #f0544f 0%, #e74c3c 100%);
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(240, 84, 79, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 84, 79, 0.4);
+  background: linear-gradient(135deg, #e74c3c 0%, #d9443e 100%);
+}
+
+.ctaInfo {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.footer {
+  background-color: #ffffff;
+  color: #333;
+  padding: 60px 5%;
+  font-size: 0.95rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.footerTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footerBrand {
+  flex: 1 1 280px;
+  max-width: 350px;
+}
+
+.footerBrand p {
+  color: #666;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.footerColumns {
+  display: flex;
+  flex: 3;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.column h4 {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #1b2a3f;
+  font-weight: 600;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column li {
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s ease;
+}
+.column li a{
+  
+  cursor: pointer;
+  color: #777;
+  transition: all 0.2s ease;
+}
+.column li a:hover{
+  
+ color: #f0544f;
+}
+
+
+
+.column li:hover {
+  color: #f0544f;
+  transform: translateX(5px);
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.iconButton {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #1b2a3f;
+}
+
+.iconButton:hover {
+  background-color: #f0544f;
+  color: white;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 60px 20px;
+  }
+
+  .ctaSection h2 {
+    font-size: 2rem;
+  }
+
+  .ctaInfo {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footerColumns {
+    gap: 30px;
+  }
+
+  .column {
+    flex: 1 1 200px;
+  }
+}

@@ -1,0 +1,143 @@
+.section {
+  padding: 80px 5%;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  min-height: 200px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(62, 130, 201, 0.2);
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  margin: 0 0 0 25px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.card:hover .iconWrapper {
+  background: #eef5ff;
+}
+
+.iconWrapper img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.text {
+  flex: 1;
+  order: -1;
+}
+
+.text .title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #3e82c9;
+  text-align: left;
+}
+
+.text .desc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: left;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  .card {
+    padding: 20px;
+    min-height: 180px;
+  }
+
+  .iconWrapper {
+    padding: 15px;
+    margin: 0 0 0 15px;
+  }
+
+  .iconWrapper img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .text .title {
+    font-size: 1.1rem;
+  }
+
+  .text .desc {
+    font-size: 0.9rem;
+  }
+}

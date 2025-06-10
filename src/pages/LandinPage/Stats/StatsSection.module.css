@@ -1,0 +1,95 @@
+.dataContainer {
+    padding: 50px 5%;
+    background-color: #f9f9f9;
+  }
+  
+  .dataStats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .dataStat h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  .dataStat p {
+    color: #666;
+    margin: 5px 0 0;
+  }
+  
+  .dataDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #0d6efd;
+    border-radius: 50%;
+    margin-bottom: 8px;
+  }
+  
+  .dataMapSection {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .dataWorldMap {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .dataTestimonial {
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+  
+  .dataDisclaimer {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 10px;
+  }
+  
+  .dataFeatures {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .dataFeature {
+    width: 160px;
+    text-align: center;
+  }
+  
+  .dataFeatureIcon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 768px) {
+    .wrapper {
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+  
+    .hero, .illustration {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      justify-content: center;
+    }
+  }

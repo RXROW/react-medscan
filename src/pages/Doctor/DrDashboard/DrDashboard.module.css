@@ -1,0 +1,483 @@
+body {
+  background-color: #f0f2f5; /* رمادي فاتح */
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+.dashboardContainer {
+  display: flex; /* Use flexbox to arrange sidebar and content */
+  min-height: 100vh; /* Ensure full height */
+  background-color: #f0f2f5;
+  position: relative;
+  margin-top: 80px;
+}
+
+.content {
+  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.cardContainer {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arrowIcon {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.addButton,
+.filterButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.addButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
+.addButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.filterButton {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #dee2e6;
+}
+
+.filterButton:hover {
+  background-color: #e9ecef;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.patientTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.patientTable th,
+.patientTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.patientTable th {
+  font-weight: 600;
+  color: #495057;
+  background-color: #f8f9fa;
+}
+
+.patientTable tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.patientTable tr:hover {
+  background-color: #f8f9fa;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalContent h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.formSection {
+  margin-bottom: 2rem;
+}
+
+.formSection h3 {
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+.formSection input,
+.formSection select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.measurementGroup,
+.bloodPressureGroup {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.measurementGroup input,
+.bloodPressureGroup input {
+  flex: 1;
+}
+
+.measurementGroup select {
+  width: 100px;
+}
+
+.medicationGroup {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.removeButton {
+  padding: 0.5rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #c82333;
+}
+
+.addMedicationButton {
+  padding: 0.75rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.addMedicationButton:hover {
+  background-color: #218838;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+
+.resetButton {
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.closeButton {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: #0056b3;
+}
+
+.modalButtons button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modalButtons button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.modalButtons button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.modalButtons button[type="button"] {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #dee2e6;
+}
+
+.modalButtons button[type="button"]:hover {
+  background-color: #e9ecef;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .cardContainer {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buttonGroup {
+    width: 100%;
+  }
+
+  .addButton,
+  .filterButton {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .patientTable th,
+  .patientTable td {
+    padding: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .headerTitle {
+    font-size: 1.25rem;
+  }
+
+  .pagination button {
+    padding: 0.375rem 0.5rem;
+    min-width: 2rem;
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+}
+
+.filterInput {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filterInput:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.filterSelect {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.sortOptions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sortButton {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.sortButton:hover {
+  background-color: #f5f6fa;
+  border-color: #4a90e2;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.actionButton:first-child {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.actionButton:first-child:hover {
+  background-color: #357abd;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
+
+/* Update table styles */
+.patientTable th {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.patientTable th:hover {
+  background-color: #f5f6fa;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .actionButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sortOptions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterSelect {
+    margin: 0.5rem 0;
+  }
+}
+
+.tableRow {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tableRow:hover {
+  background-color: #f8f9fa;
+}

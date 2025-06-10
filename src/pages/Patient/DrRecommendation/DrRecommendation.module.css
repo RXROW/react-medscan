@@ -1,0 +1,847 @@
+/* General Layout */
+.pageWrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.doctorRecommendation {
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: Arial, sans-serif;
+  flex-grow: 1;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
+
+/* Search Container Styling (Main Change) */
+.searchContainer {
+  max-width: 90%; /* Adjust max-width as needed */
+  margin-top: 5px; /* Center the search bar */
+  margin-left: 50px; /* Center the search bar */
+  padding: 10px 15px; /* Adjust padding as needed */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.searchForm {
+  display: flex;
+  width: 100%; /* Ensure form takes full width of container */
+}
+
+.searchFieldsGroup {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allow the group of fields to take available space */
+  gap: 10px; /* Space between input groups */
+}
+
+.inputGroupCompact {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Each input group takes equal flexible space */
+  min-width: 150px; /* Minimum width for responsiveness */
+}
+
+.labelCompact {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Handle long labels */
+}
+
+.selectInputCompact {
+  width: 100%;
+  padding: 8px 12px; /* Adjusted padding for a more compact look */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  appearance: none;
+  font-size: 15px; /* Slightly larger font for value */
+  background-color: white;
+  cursor: pointer;
+  padding-right: 30px; /* Make space for the custom dropdown icon */
+}
+
+/* Custom dropdown icon for select */
+.dropdownIconCompact {
+  position: absolute;
+  right: 18px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  font-size: 14px; /* Adjust icon size */
+}
+
+/* Position dropdown icon correctly within selectWrapper */
+.inputGroupCompact {
+  position: relative; /* Needed for absolute positioning of dropdownIconCompact */
+}
+
+/* Remove default arrow for better custom icon appearance */
+.selectInputCompact::-ms-expand {
+  display: none;
+}
+.selectInputCompact {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2C197.8L154.2%2C65c-3.1-3.1-8.2-3.1-11.3%2C0L5.4%2C197.8c-3.1%2C3.1-3.1%2C8.2%2C0%2C11.3s8.2%2C3.1%2C11.3%2C0l131.6-131.6l131.6%2C131.6c3.1%2C3.1%2C8.2%2C3.1%2C11.3%2C0C290.1%2C206%2C290.1%2C200.9%2C287%2C197.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Position the arrow */
+  background-size: 12px;
+}
+
+.separator {
+  width: 1px;
+  background-color: #e0e0e0;
+  height: 40px; /* Height to match the input fields */
+  margin: 0 5px; /* Smaller margin for compactness */
+}
+
+.searchButtonCompact {
+  background-color: #0070cd;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  margin-left: 10px;
+  width: 90px;
+}
+
+.searchButtonCompact:hover {
+  background-color: #0056b3;
+}
+
+/* --- Specialty Filters Section --- */
+.specialtyFilters {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 15px; /* Spacing between items */
+  margin-bottom: 20px;
+  padding: 15px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+}
+
+.specialtyItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  color: #555;
+  text-align: center; /* Center the text below the icon */
+  width: 70px; /* Give a fixed width to each item for consistent spacing */
+  transition: transform 0.2s ease, color 0.2s ease; /* Smooth transition for hover */
+}
+
+.specialtyItem:hover {
+  transform: translateY(-3px); /* Slight lift effect */
+  color: #007bff; /* Change text color on hover */
+}
+
+.iconContainer {
+  width: 60px; /* Slightly larger for the square shape */
+  height: 60px;
+  background-color: #f0f8ff; /* Light blue background */
+  border: 1px dotted #a8d5ff; /* Light blue dotted border */
+  border-radius: 10px; /* Square with slight rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px; /* Space between icon and text */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.iconContainer img {
+  width: 35px; /* Adjust icon size within the container */
+  height: 35px;
+  object-fit: contain; /* Ensures the image scales properly */
+}
+
+/* Styles for the selected specialty */
+.selectedSpecialty {
+  background-color: #e0f2ff; /* Slightly darker blue for selected background */
+  border: 2px solid #007bff; /* Solid blue border for selected */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3); /* Blue glowing effect */
+}
+
+.selectedSpecialty + span {
+  /* Target the span immediately after selectedSpecialty */
+  color: #007bff; /* Blue text for selected specialty */
+  font-weight: bold;
+}
+
+/* --- Filter Options Section (Dropdowns) --- */
+.filterOptions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.filterDropdown {
+  padding: 8px 12px;
+  border: 1px solid #cceeff;
+  border-radius: 5px;
+  background-color: #e6f7ff;
+  font-size: 14px;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2C197.8L154.2%2C65c-3.1-3.1-8.2-3.1-11.3%2C0L5.4%2C197.8c-3.1%2C3.1-3.1%2C8.2%2C0%2C11.3s8.2%2C3.1%2C11.3%2C0l131.6-131.6l131.6%2C131.6c3.1%2C3.1%2C8.2%2C3.1%2C11.3%2C0C290.1%2C206%2C290.1%2C200.9%2C287%2C197.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%;
+  background-size: 12px auto;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.filterDropdown:hover {
+  border-color: #007bff;
+}
+
+/* Doctor List & Card Styling (Existing, mostly unchanged) */
+.doctorList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.doctorCard {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  border: 1px solid #eef2f7;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.doctorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 112, 205, 0.15);
+  border-color: #0070cd;
+}
+
+.doctorInfo {
+  display: flex;
+  gap: 25px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.doctorImageContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #0070cd, #00a0ff);
+  padding: 3px;
+  box-shadow: 0 4px 15px rgba(0, 112, 205, 0.2);
+}
+
+.doctorImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+}
+
+.doctorImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 112, 205, 0.3),
+    rgba(0, 160, 255, 0.2)
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.doctorCard:hover .doctorImageOverlay {
+  opacity: 1;
+}
+
+.doctorCard:hover .doctorImage {
+  transform: scale(1.05);
+}
+
+.doctorCard:hover .doctorImageContainer {
+  box-shadow: 0 6px 20px rgba(0, 112, 205, 0.3);
+}
+
+.details {
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.doctorName {
+  font-size: 20px;
+  color: #0070cd;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doctorTitle {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.ratingStars {
+  color: #ffc107;
+  font-size: 16px;
+}
+
+.ratingText {
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.reviewRatings {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #666;
+  background-color: #f8f9fa;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.specialization {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.boldText {
+  font-weight: 600;
+  color: #333;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.fees {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.waitingTime {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.callCost {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.availability {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-width: 150px;
+}
+
+.availabilityDate {
+  background-color: #e6f7ff;
+  color: #0070cd;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bookNowButton {
+  background: linear-gradient(to right, #0070cd, #00a0ff);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 112, 205, 0.2);
+}
+
+.bookNowButton:hover {
+  background: linear-gradient(to right, #0056b3, #0070cd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 112, 205, 0.3);
+}
+
+.hospitalInfo {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .searchFieldsGroup {
+    flex-wrap: wrap; /* Allow fields to wrap on smaller screens */
+    justify-content: center;
+    gap: 15px; /* Increase gap when wrapped */
+  }
+
+  .inputGroupCompact {
+    min-width: unset; /* Remove min-width to allow full width on small screens */
+    width: 100%; /* Take full width when wrapped */
+  }
+
+  .separator {
+    display: none; /* Hide separators when fields wrap */
+  }
+
+  .searchButtonCompact {
+    width: 100%; /* Button takes full width */
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .specialtyFilters {
+    justify-content: center;
+  }
+
+  .doctorCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .doctorInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .doctorImage {
+    margin-bottom: 10px;
+  }
+
+  .availability {
+    width: 100%;
+    align-items: center;
+  }
+
+  .filterOptions {
+    justify-content: center;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loaderSpinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0070cd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.noDoctorModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.noDoctorContent {
+  background-color: white;
+  padding: 35px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  animation: slideIn 0.4s ease-out;
+  border: 1px solid rgba(0, 112, 205, 0.1);
+}
+
+.noDoctorTitle {
+  color: #0070cd;
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.noDoctorTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #0070cd, #00a0ff);
+  border-radius: 2px;
+}
+
+.noDoctorMessage {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  padding: 0 10px;
+}
+
+.noDoctorButton {
+  background: linear-gradient(to right, #0070cd, #00a0ff);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 112, 205, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.noDoctorButton:hover {
+  background: linear-gradient(to right, #0056b3, #0070cd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 112, 205, 0.3);
+}
+
+.noDoctorButton:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 112, 205, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a close button for the modal */
+.modalCloseButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modalCloseButton:hover {
+  color: #0070cd;
+  background-color: rgba(0, 112, 205, 0.1);
+  transform: rotate(90deg);
+}
+
+/* Add an icon container for the modal */
+.modalIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background-color: rgba(0, 112, 205, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0070cd;
+  font-size: 40px;
+}
+
+.doctorDetailsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.doctorDetailsContent {
+  background-color: white;
+  padding: 35px;
+  border-radius: 15px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  animation: slideIn 0.4s ease-out;
+  border: 1px solid rgba(0, 112, 205, 0.1);
+}
+
+.doctorDetailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.doctorDetailsImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0070cd;
+}
+
+.doctorDetailsInfo {
+  flex: 1;
+}
+
+.doctorDetailsName {
+  font-size: 24px;
+  color: #0070cd;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.doctorDetailsTitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.doctorDetailsRating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffc107;
+  font-size: 16px;
+}
+
+.doctorDetailsSection {
+  margin-bottom: 25px;
+}
+
+.doctorDetailsSectionTitle {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doctorDetailsSectionContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.detailItem {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.detailLabel {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.detailValue {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.doctorDetailsActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.actionButton {
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.primaryAction {
+  background: linear-gradient(to right, #0070cd, #00a0ff);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 112, 205, 0.2);
+}
+
+.primaryAction:hover {
+  background: linear-gradient(to right, #0056b3, #0070cd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 112, 205, 0.3);
+}
+
+.secondaryAction {
+  background: white;
+  color: #0070cd;
+  border: 2px solid #0070cd;
+}
+
+.secondaryAction:hover {
+  background: rgba(0, 112, 205, 0.1);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,268 @@
+/* Navbar.module.css */
+.navbar {
+  position: fixed; 
+  top: 0;
+  left: 280px; 
+  width: calc(100% - 250px);  
+  height: 70px;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: hsl(0, 0%, 100%);
+  
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 0 2rem;
+  transition: all 0.3s ease;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.centerSection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* يحرك المحتوى لليمين */
+  margin-right: 2rem;
+}
+
+.dashboardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
+}
+
+.patientsLink {
+  font-size: 0.9rem;
+  color: #3498db;
+  cursor: pointer;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.patientsLink:hover {
+  color: #2980b9;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  width: 350px;
+}
+
+.searchBar:focus-within {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  background-color: #ffffff;
+}
+
+.searchIcon {
+  color: #95a5a6;
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  width: 100%;
+  color: #2c3e50;
+}
+
+.searchInput::placeholder {
+  color: #95a5a6;
+}
+
+.notificationIcon {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.notificationIcon:hover {
+  color: #3498db;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 25px;
+  transition: background-color 0.2s ease;
+}
+
+.userInfo:hover {
+  background-color: #f8f9fa;
+}
+
+.userInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.userDetails span:first-child {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.userDetails span:last-child {
+  color: #7f8c8d;
+  font-size: 0.8rem;
+}
+
+.dropdownIcon {
+  font-size: 0.8rem;
+  color: #95a5a6;
+  transition: transform 0.2s ease;
+}
+
+.userInfo:hover .dropdownIcon {
+  transform: rotate(180deg);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .navbar {
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .searchBar {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  .searchBar {
+    width: 250px;
+  }
+
+  .dashboardTitle {
+    font-size: 1.3rem;
+  }
+
+  .userDetails {
+    display: none;
+  }
+
+  .userInfo {
+    padding: 0.3rem;
+  }
+
+  .userInfo img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    left: 0;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .leftSection {
+    display: none;
+  }
+
+  .centerSection {
+    margin-right: 1rem;
+  }
+
+  .searchBar {
+    width: 200px;
+  }
+
+  .rightSection {
+    gap: 1rem;
+  }
+
+  .notificationIcon {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    height: 60px;
+  }
+
+  .searchBar {
+    display: none;
+  }
+
+  .centerSection {
+    margin-right: 0.5rem;
+  }
+
+  .rightSection {
+    gap: 0.5rem;
+  }
+
+  .userInfo img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Mobile Menu Button (Add this if you want to add a mobile menu button) */
+.mobileMenuButton {
+  display: none;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.mobileMenuButton:hover {
+  background-color: #f8f9fa;
+  color: #3498db;
+}
+
+@media screen and (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+  }
+}

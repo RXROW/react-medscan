@@ -1,0 +1,197 @@
+/* Layout container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 16px;
+  box-shadow: none;
+  width: 90%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+  
+  /* Left section: form */
+  .loginSection {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .toggleContainer {
+    display: flex;
+    background: #E3F3FB;
+    border-radius: 20px;
+    width: 250px;
+    height: 250;
+    margin-bottom: 100px;
+    margin-left:70px;
+    align-items: center;
+  }
+  
+  .toggleOption {
+    flex: 1;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .toggleOption img {
+    width: 30px;
+    height: 30px;
+    padding-left: 30px;
+  }
+  
+  .selected {
+    background: #333;
+    color: white;
+  }
+  
+  .unselected {
+    color: #a0aec0;
+  }
+  
+  .unselected img {
+    filter: hue-rotate(180deg);
+  }
+  
+  /* Back to login link */
+  .backLink {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+  }
+  
+  /* Headings and description */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Code input boxes */
+  .codeInputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .codeInput {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Timer and resend */
+  .timer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .time {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .resendText {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .resendLink {
+    color: #e63946;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 4px;
+  }
+  
+  /* Verify button */
+  .verifyBtn {
+    padding: 12px;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .verifyBtn:hover {
+    background-color: #333;
+  }
+  
+  /* Right section: doctor image */
+  .imageSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .imageSection img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 30px;
+    margin-left: 40px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .loginSection {
+      padding: 20px;
+    }
+  
+    .imageSection {
+      padding: 20px 0;
+    }
+  
+    .codeInput {
+      width: 45px;
+      height: 45px;
+    }
+  
+    .verifyBtn {
+      font-size: 14px;
+    }
+  }
+  

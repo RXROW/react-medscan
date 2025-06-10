@@ -1,0 +1,66 @@
+.symptomContainer {
+    padding: 60px 5%;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .symptomContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .description {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .diseaseBtn {
+    padding: 12px 20px;
+    background-color: #E9EEF3;
+    color: #3e82c9;
+    border: none;
+    color: #3e82c9;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .diseaseBtn:hover {
+    background-color: #0b5ed7;
+    color: white;
+  }
+  @media (max-width: 768px) {
+    .wrapper {
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+  
+    .hero, .illustration {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      justify-content: center;
+    }
+  }

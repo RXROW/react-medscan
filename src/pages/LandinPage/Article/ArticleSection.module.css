@@ -1,0 +1,107 @@
+.container {
+  padding: 80px 5%;
+  background-color: #f9f9f9;
+  position: relative;
+  overflow-x: auto;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* الكارت الواحد داخل السلايدر */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s;
+  width: 350px; /* ثبتي العرض */
+  height: 400px; /* أو استخدمي min-height لو بتحبي الطول يبقى مرن */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.image {
+  width: fit-content;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-size: 0.95rem;
+  color: #5c5c5c;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  max-height: 100px; /* تحديد ارتفاع الكارت */
+  overflow: hidden; /* إخفاء النص الزائد */
+  text-overflow: ellipsis; /* إضافة نقاط (...) في نهاية النص الزائد */
+  display: -webkit-box; /* استخدام flexbox */
+  line-clamp: 5; /* عدد السطرات المعروضة */
+}
+
+.readMore {
+  font-weight: bold;
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+/* أسهم الكاروسيل */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #0d6efd;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* لإزالة النقاط السفلية (Indicators) لو مش عايزاهم */
+.carousel-indicators {
+  display: none;
+}
+
+/* لضبط السطر المحتوي على الكروت */
+.carousel-inner .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .hero,
+  .illustration {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+}

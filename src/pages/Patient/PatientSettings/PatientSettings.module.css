@@ -1,0 +1,168 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.dashboardWrapper {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* زيد أو عدل حسب التنسيق المطلوب */
+.navTabs {
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+}
+
+.tab:hover {
+  background-color: #ddd;
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navTabs {
+  display: flex;
+  border-bottom: 1px solid #ecf0f1;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #7f8c8d;
+  position: relative;
+  margin-right: 5px;
+}
+
+.tab:hover {
+  color: #3498db;
+}
+
+.tab.active {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #3498db;
+}
+
+.tabContent {
+  padding: 20px 0;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  color: #3498db;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.subtitle {
+  color: #7f8c8d;
+  margin: 20px 0 10px;
+  font-size: 1.1rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ecf0f1;
+  margin: 20px 0;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileSection, .privacySection, .socialSection {
+  margin-bottom: 30px;
+}
+
+.tableTitle {
+  color: #95a5a6;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.profileTable, .privacyTable, .socialTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profileTable td, .privacyTable td, .socialTable td {
+  padding: 12px 10px;
+  border: 1px solid #ecf0f1;
+}
+
+.profileTable td:nth-child(odd),
+.privacyTable td:nth-child(odd),
+.socialTable td:nth-child(odd) {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  width: 20%;
+}
+
+.connectBtn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.connectBtn:hover {
+  background-color: #2980b9;
+}

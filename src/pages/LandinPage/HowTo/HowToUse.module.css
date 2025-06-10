@@ -1,0 +1,166 @@
+.section {
+  padding: 100px 5%;
+  text-align: center;
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 3rem;
+  color: #1a2e35;
+  margin-bottom: 15px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #6a00f4;
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+  padding: 0 20px;
+}
+
+.box {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #3e82c9;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.box:hover::before {
+  transform: scaleX(1);
+}
+
+.icon {
+  font-size: 3.5rem;
+  color: #3e82c9;
+  margin-bottom: 25px;
+  transition: transform 0.3s ease;
+}
+
+.box:hover .icon {
+  transform: scale(1.1);
+}
+
+.stepTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a2e35;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: #3e82c9;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(62, 130, 201, 0.3);
+}
+
+.button:hover {
+  background-color: #3e82c9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(62, 130, 201, 0.4);
+}
+
+.stepNumber {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(62, 130, 201, 0.1);
+}
+
+.buttonArrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.button:hover .buttonArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 5%;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+
+  .container {
+    gap: 30px;
+  }
+
+  .box {
+    width: 100%;
+    max-width: 320px;
+    padding: 30px 20px;
+  }
+}

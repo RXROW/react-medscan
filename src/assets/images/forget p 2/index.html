@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MEDSCAN</title>
+    <link rel="icon" href="Iconproject.icon">
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="toggle-container">
+                <div class="toggle-option selected" id="patient" >
+                    Patient
+                    <img src="Vector (1).png" alt="Patient">
+                </div>
+                <div class="toggle-option unselected" id="doctor" onclick="goToPage('file:/C:/Users/abanob/OneDrive/Desktop/updated%20grag/English/forget/doctor/forget%20d%202/index.html')">
+                    Doctor
+                    <img src="healthicons_doctor-male.png" alt="Doctor">
+                </div>
+            </div>
+            <a href="#" class="back-link">← Back to login</a>
+            <h1>Verify Code</h1>
+            <p>An authentication code has been sent to your email.</p>
+            <div class="code-inputs">
+                <input type="text" maxlength="1" value="">
+                <input type="text" maxlength="1" value="">
+                <input type="text" maxlength="1" value="">
+                <input type="text" maxlength="1" value="">
+            </div>
+            <div class="timer">
+                <span class="time">00:60 Sec</span>
+                <span class="resend-text">Didn't receive a code? <a href="#" class="resend-link">Resend</a></span>
+                <button type="submit" class="verify-btn">Verify</button> <!-- تغيير type من "Verify" إلى "submit" -->
+            </div>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="Smiley female doctor posing in suit and stethoscope (1).png" alt="">
+    </div>
+    <!-- نقل السكربت للأسفل لضمان تحميل DOM أولاً -->
+    <script src="save.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    }
+
+    body {
+    display: flex;
+
+    }
+
+    .toggle-container {
+        display: flex;
+        background: #E3F3FB;
+        border-radius: 20px;
+        padding: 0px;
+        width: 250px;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    
+    .toggle-option {
+        flex: 1;
+        text-align: center;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .toggle-option img {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .selected {
+        background: #333;
+        color: white;
+    }
+    
+    .unselected {
+        color: #a0aec0;
+    }
+    .container {
+    display: flex;
+    width: 800px;
+    border-radius: 10px;
+    }
+
+
+    .login-section {
+    padding-top: 120px;
+    padding-left: 190px;
+    line-height: 32px;
+
+    }
+
+    
+.back-link {
+    text-decoration: none;
+    color: #313131;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+    h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+    }
+
+    p{
+        font-size: 14px;
+        color: #666;
+        margin: 0 0 20px 0;
+        line-height: 17px;
+    }
+
+
+
+
+
+
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .password-field {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    
+    .password-field label {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    
+    .password-field input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 40px; /* مساحة لأيقونة العين */
+    }
+    
+    .password-field .eye-icon {
+        position: absolute;
+        right: 12px;
+        top: 80%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #666;
+        cursor: pointer;
+    }
+    
+    .set-password-btn {
+        padding: 10px;
+        background-color: #1E293B;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+    
+    .set-password-btn:hover {
+        background-color: #34495e;
+    }
+
+
+
+
+
+
+
+    .submit-btn {
+        padding: 10px;
+        background-color: #1E293B;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+    
+    .submit-btn:hover {
+        background-color: #34495e;
+    }
+    
+
+    .image-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding-right: 150px;
+    }
+    
+    .image-section img {
+        width: 550px;
+        height: 690px;
+        border-radius: 40px;
+        object-fit: cover;
+        padding: 20px;
+    }
+
+
+
+
+
+
+    @media (max-width: 1034px) {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('Smiley\ female\ doctor\ posing\ in\ suit\ and\ stethoscope\ \(1\).png'); /* تأكد من أن الصورة موجودة */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgb(255 255 255 / 37%); /* لون خلفي شفاف قليلاً */
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+        }
+        p{
+            color: black;
+        }
+        .password-field label{
+            color: black;
+        }
+    
+        .login-section {
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    
+        .image-section {
+            display: none; /* إخفاء الصورة كعنصر مستقل لأنها الآن خلفية */
+        }
+    
+        .toggle-container {
+            width: 100%;
+            justify-content: center;
+        }
+    
+        .social-login {
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+    
+        .social-btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        p{
+            color: black;
+        }
+        .password-field label{
+        color: black;
+    }
+        .container {
+            width: 100%;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    
+        .social-login {
+            gap: 5px;
+        }
+    
+        .social-btn {
+            padding: 12px;
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

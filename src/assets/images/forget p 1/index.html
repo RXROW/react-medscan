@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MEDSCAN</title>
+    <link rel="icon" href="Iconproject.icon"> <!-- تصحيح 'Icon' إلى 'icon' -->
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="toggle-container">
+                <div class="toggle-option selected" id="patient" >
+                    Patient
+                    <img src="Vector (1).png" alt="Patient">
+                </div>
+                <div class="toggle-option unselected" id="doctor" onclick="goToPage('file:/C:/Users/abanob/OneDrive/Desktop/updated%20grag/English/forget/doctor/forget%20d%201/index.html')">
+                    Doctor
+                    <img src="healthicons_doctor-male.png" alt="Doctor">
+                </div>
+            </div>
+            <a href="#" class="back-link">← Back to login</a>
+            <h1>Forgot your password?</h1>
+            <p>Don't worry, happens to all of us. Enter your email below to <br> recover your password</p>
+            <div class="input-field">
+                <form id="emailForm">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="makarious@gmail.com" required>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">Or use Email</div>
+                <div class="divider-line"></div>
+            </div>
+            <div class="social">
+                <div class="social-login">
+                    <button class="social-btn facebook"><img src="face icon.png" alt="Facebook"></button>
+                    <button class="social-btn google"><img src="icons_google.png" alt="Google"></button>
+                    <button class="social-btn apple"><img src="apple icon.png" alt="Apple"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="Smiley female doctor posing in suit and stethoscope (1).png" alt="">
+    </div>
+    <!-- نقل السكربت للأسفل لضمان تحميل DOM أولاً -->
+    <script src="save.js"></script>
+</body>
+</html>

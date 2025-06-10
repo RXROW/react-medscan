@@ -1,0 +1,170 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px ;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #002132 0%, #16213e 100%);
+}
+
+.hero {
+ 
+  width: 100%;
+  z-index: 2;
+  color: white;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.when {
+  color: #0075FF;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+}
+
+.when:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #fff;
+  color: #16213e;
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  border: 2px solid transparent;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #0075FF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px #0077ff49 ;
+}
+
+.btn svg {
+  transition: transform 0.3s ease;
+}
+
+.btn:hover svg {
+  transform: scale(1.1);
+}
+
+.illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInRight 1s ease-out;
+}
+
+.illustration img {
+  width: 60%;
+  position: absolute;
+  bottom: -110px;
+  right: -30px;
+  transition: transform 0.3s ease;
+}
+
+ 
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 60px 20px;
+    text-align: center;
+  }
+.illustration img {
+   width: 90%;
+  position: absolute;
+   bottom: -10%;
+   left: 6%;
+  transition: transform 0.3s ease;
+}
+
+  .hero,
+  .illustration {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    margin: 0 auto;
+  }
+
+  .illustration {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+}

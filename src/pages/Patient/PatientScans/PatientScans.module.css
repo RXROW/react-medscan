@@ -1,0 +1,252 @@
+.patientScans {
+  background-color: #f5f7fa;
+  font-family: "Inter", sans-serif;
+  min-height: 60vh; /* Ensure it takes full height */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+}
+/* --- General Layout --- */
+.pageWrapper {
+  display: flex; /* This is correct, creates a flex container for sidebar and main content */
+  height: 100vh; /* Ensures the wrapper takes full viewport height */
+  overflow: hidden; /* Prevents overall page scroll unless specifically allowed on mainContent */
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* ✅ يمنع ظهور Scroll */
+  background-color: #f5f7fa;
+}
+
+/* --- PatientScans specific styling (already mostly good, just ensuring alignment) --- */
+.patientScans {
+  padding: 5px;
+  background-color: #f5f7fa; /* Keep this for the content background */
+  font-family: "Inter", sans-serif;
+  flex-grow: 1; 
+  display: flex; /* Make patientScans itself a flex container */
+  flex-direction: column; /* Stack its children vertically */
+  align-items: center; /* Center children horizontally within patientScans */
+}
+
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* بدل 300px */
+  gap: 15px;
+  max-width: 1000px;
+  height: 400px; /* قلل الارتفاع */
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+/* The rest of your card and button styles remain the same. */
+.header {
+  width: 100%;
+  max-width: 1200px; /* Max width to match content */
+  display: flex;
+  align-items: center;
+padding: 5px 0; 
+}
+.pageTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #333;
+  margin-left: 10px;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); 
+  gap: 15px;
+  max-width:900px;
+  height: 450px;
+   margin-top: 5px; 
+}
+
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 18px; /* بدل 25px */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardNumber {
+  position: absolute;
+  width:40px;
+  height: 40px;
+  background-color: #d3d3d3; /* Blue circle for number */
+  color: #415a77;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.cardContent {
+  width: 100%; /* Ensure content fills card */
+  padding-top: 30px; /* Make space for the number circle */
+  text-align: center; /* Center internal content */
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  /* width: ; */
+}
+
+.cardIcon {
+  width: 30px;
+  height: 30px;
+  color: #007bff; /* Blue color for icons */
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.fileStatus {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.fileAccepted {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.fileInput {
+  display: none; /* Hide default file input */
+}
+
+.browseButton {
+  background-color: #0070CD;
+  color: #fffcfc;
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.browseButton:hover {
+  background-color: #e0e0e0;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+
+
+
+.uploadButton {
+  background-color: #28a745; /* Green for upload */
+  color: white;
+}
+
+.uploadButton:hover {
+  background-color: #218838;
+}
+
+.waitingMessage,
+.downloadDescription {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.downloadButton {
+  background-color: #0070CD;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  margin-top:2px;
+}
+
+.downloadButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .patientScans {
+    padding: 15px;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+    padding: 0 10px;
+  }
+
+  .cardContent {
+    padding-top: 20px;
+  }
+
+  .cardNumber {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    top: -10px;
+    left: -10px;
+  }
+
+  .cardIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .browseButton,
+  .cancelButton,
+  .uploadButton,
+  .downloadButton {
+    width: 100%;
+    max-width: none; /* Allow full width on small screens */
+  }
+
+  .actionButtons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px;
+  }
+}
