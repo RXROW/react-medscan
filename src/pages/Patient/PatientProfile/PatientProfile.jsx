@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../PatientProfile/PatientProfile.module.css";
-import drImg from "../../../assets/images/drImages/profil.png"; 
+import drImg from "https://img.freepik.com/premium-photo/marketing-manager-digital-avatar-generative-ai_934475-9082.jpg";
+
 
 const PatientProfile = () => {
   const [profile] = useState({
