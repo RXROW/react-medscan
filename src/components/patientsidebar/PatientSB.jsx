@@ -8,9 +8,12 @@ import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
 
 import styles from "../patientsidebar/PatientSB.module.css";
 import logo from "../../../public/logo.png";
+import { useAuthContext } from "../../Context/AuthContext";
 
-const PatientSidebar = ({ user }) => {
-  return (
+const PatientSidebar = () => {
+  const { userRole } = useAuthContext();
+
+  const renderPatientLinks = () => (
     <aside className={styles.sidebar}>
       <NavLink to="/">
         <img src={logo} alt="MedScan Logo" className={styles.logo} />
@@ -92,6 +95,64 @@ const PatientSidebar = ({ user }) => {
       </div>
     </aside>
   );
+
+  const renderDoctorLinks = () => (
+    <aside className={styles.sidebar}>
+      <NavLink to="/">
+        <img src={logo} alt="MedScan Logo" className={styles.logo} />
+      </NavLink>
+
+      <p className={styles.section}>Doctor Dashboard</p>
+      <NavLink
+        to="/doctor-chatbot"
+        className={({ isActive }) =>
+          isActive ? styles.menuItemActive : styles.menuItem
+        }
+      >
+        <TfiCommentAlt />
+        <span>Chat with MedScan</span>
+      </NavLink>
+      <NavLink
+        to="/dr-dashboard"
+        className={({ isActive }) =>
+          isActive ? styles.menuItemActive : styles.menuItem
+        }
+      >
+        <FaUserFriends />
+        <span>Patients List</span>
+      </NavLink>
+
+      <hr className={styles.separator} />
+      <p className={styles.section}>Other Options</p>
+
+      <NavLink
+        to="/dr-profile"
+        className={({ isActive }) =>
+          isActive ? styles.menuItemActive : styles.menuItem
+        }
+      >
+        <FaRegUser />
+        <span>Profile</span>
+      </NavLink>
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          isActive ? styles.menuItemActive : styles.menuItem
+        }
+      >
+        <IoSettingsOutline />
+        <span>Settings</span>
+      </NavLink>
+
+      <div className={styles.profile}>
+        <NavLink to="/logout">
+          <IoExitOutline className={styles.exitIcon} />
+        </NavLink>
+      </div>
+    </aside>
+  );
+
+  return userRole === 'patient' ? renderPatientLinks() : renderDoctorLinks();
 };
 
 export default PatientSidebar;

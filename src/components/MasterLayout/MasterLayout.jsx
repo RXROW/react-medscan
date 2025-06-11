@@ -12,8 +12,7 @@ const MasterLayout = () => {
     return (
         <div className="dashboard-container">
             {/* Sidebar */}
-            {userRole === 'doctor' && <DrSidebar />}
-            {userRole === 'patient' && <PatientSidebar />}
+          <PatientSidebar /> 
 
             {/* Main Content */}
             <main className="main-content">

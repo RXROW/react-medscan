@@ -2,8 +2,8 @@
 .navbar {
   position: fixed; 
   top: 0;
-  left: 280px; 
-  width: calc(100% - 250px);  
+ 
+  width: calc(100% - 221px);  
   height: 70px;
   z-index: 1000;
 
@@ -157,10 +157,7 @@
 
 /* Responsive Design */
 @media screen and (max-width: 1200px) {
-  .navbar {
-    left: 250px;
-    width: calc(100% - 250px);
-  }
+ 
 
   .searchBar {
     width: 300px;

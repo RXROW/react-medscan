@@ -1,137 +1,174 @@
-import React, { useState } from 'react';
-import DrSidebar from "../../../components/drsidebar/DoctorSB";
-// import SettingsNav from "../../../components/settingsNav/settingsNav"; 
+import { useState } from 'react';
+
 import styles from '../DrSettings/DrSettings.module.css';
 
-const DrSettings = () => {
-  const [activeTab, setActiveTab] = useState('settings');
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'chat':
-        return <div className={styles.tabContent}>Chat with MedScan Bot content goes here</div>;
-      case 'patients':
-        return <div className={styles.tabContent}>Patients list content goes here</div>;
-      case 'settings':
-        return (
-          <>
-            <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Other Options</h2>
-              <div className={styles.options}>
-                <label className={styles.option}>
-                  <input type="checkbox" /> Name
-                </label>
-                <label className={styles.option}>
-                  <input type="checkbox" defaultChecked /> Identity
-                </label>
-              </div>
-              <div className={styles.divider}></div>
-            </div>
-
-            <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Settings</h2>
-              <h3 className={styles.subtitle}>PERSONAL SETTINGS</h3>
-
-              <div className={styles.profileSection}>
-                <h4 className={styles.tableTitle}>PROFILE DETAILS</h4>
-                <table className={styles.profileTable}>
-                  <tbody>
-                    <tr>
-                      <td>First Name</td>
-                      <td>Ahmed</td>
-                      <td>Last Name</td>
-                      <td>All</td>
-                    </tr>
-                    <tr>
-                      <td>Country</td>
-                      <td>Please Select</td>
-                      <td>Phone Number</td>
-                      <td>+20 1011 511 311</td>
-                    </tr>
-                    <tr>
-                      <td>City</td>
-                      <td>Please select</td>
-                      <td>Specialty</td>
-                      <td>Please select</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className={styles.privacySection}>
-                <h3 className={styles.subtitle}>PRIVACY & SECURITY</h3>
-                <table className={styles.privacyTable}>
-                  <tbody>
-                    <tr>
-                      <td>EMAIL ADDRESS</td>
-                      <td>DR&hmedAll@gmail.com</td>
-                      <td>EoR</td>
-                      <td></td>
-                      <td>PASSWORD</td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className={styles.socialSection}>
-                <h3 className={styles.subtitle}>SOCIAL ACCOUNTS</h3>
-                <table className={styles.socialTable}>
-                  <tbody>
-                    <tr>
-                      <td>FACEBOOK</td>
-                      <td>Not connected</td>
-                      <td><button className={styles.connectBtn}>Connect</button></td>
-                      <td>GOOGLE</td>
-                      <td>Not connected</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </>
-        );
-      default:
-        return <div className={styles.tabContent}>Select a tab</div>;
+const PatientSettings = () => {
+  // Initialize profile state with initial values
+  const [profile, setProfile] = useState({
+    firstName: "Ahmed",
+    lastName: "Hossam",
+    country: "Egypt",
+    phoneNumber: "+20 1011 511 311",
+    city: "Cairo",
+    zipCode: "12345",
+    email: "Hossam55@gmail.com",
+    // Password is usually handled differently, but keeping it for now
+    password: "••••••••••",
+    social: {
+      facebook: "Not connected",
+      google: "Not connected"
     }
+  });
+
+  // Generic handler for text inputs and select elements
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setProfile(prevProfile => ({
+      ...prevProfile,
+      [id]: value
+    }));
+  };
+
+  // Specific handler for social connections (if they were to change status)
+  // For 'Connect' buttons, you'd likely trigger an OAuth flow
+  const handleSocialConnect = (platform) => {
+    // This is a placeholder. In a real app, you'd integrate with Facebook/Google APIs
+    setProfile(prevProfile => ({
+      ...prevProfile,
+      social: {
+        ...prevProfile.social,
+        [platform]: prevProfile.social[platform] === "Connected" ? "Not connected" : "Connected"
+      }
+    }));
+    alert(`Connecting to ${platform}! (This is a placeholder action)`);
+  };
+
+  // Placeholder for Save and Cancel functions
+  const handleSave = () => {
+    console.log("Profile Saved:", profile);
+    alert("Profile changes saved!");
+    // In a real app, you'd send this data to your backend API
+  };
+
+  const handleCancel = () => {
+    // A more robust cancel would reload the original profile data
+    console.log("Changes cancelled.");
+    alert("Changes cancelled.");
+    // For now, we'll just log. If you had an 'originalProfile' state, you'd revert to it here.
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.dashboardWrapper}>
-        <DrSidebar />
 
-        <div className={styles.mainContent}>
-          {/* <SettingsNav /> */}
+    <div className={styles.mainContentArea}>
 
-          <h1 className={styles.title}>MEDSCAN</h1>
 
-          <div className={styles.navTabs}>
-            <button
-              className={`${styles.tab} ${activeTab === 'chat' ? styles.active : ''}`}
-              onClick={() => setActiveTab('chat')}
-            >
-              Chat with MedScan Bot
+      <div className={styles.contentContainer}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>PERSONAL SETTINGS</h2>
+          <div className={styles.actionButtons}>
+            <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
+            <button className={styles.saveButton} onClick={handleSave}>Save</button>
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <h3 className={styles.cardTitle}>PROFILE DETAILS</h3>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="firstName">First Name</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <input type="text" id="firstName" value={profile.firstName} onChange={handleChange} />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="lastName">Last Name</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <input type="text" id="lastName" value={profile.lastName} onChange={handleChange} />
+            </div>
+          </div>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="country">Country</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <select id="country" value={profile.country} onChange={handleChange}>
+                <option value="Egypt">Egypt</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option> {/* Added more options for realism */}
+                <option value="Germany">Germany</option>
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="phoneNumber">Phone Number</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <input type="text" id="phoneNumber" value={profile.phoneNumber} onChange={handleChange} />
+            </div>
+          </div>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="city">City</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <select id="city" value={profile.city} onChange={handleChange}>
+                <option value="Cairo">Cairo</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Giza">Giza</option> {/* Added more options */}
+                <option value="Luxor">Luxor</option>
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="zipCode">ZIP Code</label>
+              {/* Made editable, value from state, onChange updates state */}
+              <input type="text" id="zipCode" value={profile.zipCode} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <h2 className={styles.sectionTitle}>PRIVACY & SECURITY</h2>
+        <div className={styles.card}>
+          <div className={styles.formRow}>
+            <div className={styles.formGroupCompact}>
+              <label>EMAIL ADDRESS</label>
+              {/* Displaying from state */}
+              <span>{profile.email}</span>
+            </div>
+            {/* Edit button for email/password would likely open a modal or navigate */}
+            <button className={styles.editButton} onClick={() => alert('Edit Email functionality goes here!')}>Edit</button>
+            <div className={styles.formGroupCompact}>
+              <label>PASSWORD</label>
+              {/* Displaying from state */}
+              <span>{profile.password}</span>
+            </div>
+            {/* Edit button for email/password would likely open a modal or navigate */}
+            <button className={styles.editButton} onClick={() => alert('Edit Password functionality goes here!')}>Edit</button>
+          </div>
+        </div>
+
+        <h2 className={styles.sectionTitle}>SOCIAL ACCOUNTS</h2>
+        <div className={styles.card}>
+          <div className={styles.formRow}>
+            <div className={styles.formGroupCompact}>
+              <label>FACEBOOK</label>
+              {/* Displaying from state */}
+              <span>{profile.social.facebook}</span>
+            </div>
+            {/* Connect button with dynamic action based on platform */}
+            <button className={styles.connectButton} onClick={() => handleSocialConnect('facebook')}>
+              {profile.social.facebook === "Connected" ? "Disconnect" : "Connect"}
             </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'patients' ? styles.active : ''}`}
-              onClick={() => setActiveTab('patients')}
-            >
-              Patients list
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'settings' ? styles.active : ''}`}
-              onClick={() => setActiveTab('settings')}
-            >
-              Settings
+            <div className={styles.formGroupCompact}>
+              <label>GOOGLE</label>
+              {/* Displaying from state */}
+              <span>{profile.social.google}</span>
+            </div>
+            {/* Connect button with dynamic action based on platform */}
+            <button className={styles.connectButton} onClick={() => handleSocialConnect('google')}>
+              {profile.social.google === "Connected" ? "Disconnect" : "Connect"}
             </button>
           </div>
-
-          {renderContent()}
         </div>
       </div>
     </div>
+
   );
 };
 
-export default DrSettings;
+export default PatientSettings;
