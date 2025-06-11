@@ -37,30 +37,54 @@ const DoctorProfile = () => {
         const response = await privateInstance.get(DOCTOR.Update_Doctor_Profile(userId));
         if (response.data && response.data.status === "success") {
           const data = response.data.data;
-          // Convert API date format to our format
-          const dob = new Date(data.dateOfBirth);
+          let dobDay = "";
+          let dobMonth = "";
+          let dobYear = "";
+
+          if (data.dateOfBirth) {
+            const dob = new Date(data.dateOfBirth);
+            if (!isNaN(dob.getTime())) { // Check if date is valid
+              dobDay = dob.getDate().toString().padStart(2, '0');
+              dobMonth = (dob.getMonth() + 1).toString().padStart(2, '0');
+              dobYear = dob.getFullYear().toString();
+            }
+          }
+
           setProfile({
             firstName: data.firstName || "",
             lastName: data.lastName || "",
-            status: data.Status || "",
+            status: data.Status || "", // Assuming API sends 'Status'
             email: data.email || "",
             country: data.country || "",
-            dob: {
-              day: dob.getDate().toString().padStart(2, '0'),
-              month: (dob.getMonth() + 1).toString().padStart(2, '0'),
-              year: dob.getFullYear().toString()
-            },
+            dob: { day: dobDay, month: dobMonth, year: dobYear },
             phone: {
               code: data.phone?.substring(0, 3) || "",
               number: data.phone?.substring(3) || ""
             },
             city: data.city || "",
             specialization: data.specialty || "",
-            experience: "",
-            education: "",
-            license: ""
+            experience: data.experience || "", // Initialize from data if available
+            education: data.education || "",    // Initialize from data if available
+            license: data.license || "",      // Initialize from data if available
           });
-          setTempProfile(profile);
+          setTempProfile(prevTempProfile => ({ // Use functional update for tempProfile
+            ...prevTempProfile,
+            firstName: data.firstName || "",
+            lastName: data.lastName || "",
+            status: data.Status || "", // Assuming API sends 'Status'
+            email: data.email || "",
+            country: data.country || "",
+            dob: { day: dobDay, month: dobMonth, year: dobYear },
+            phone: {
+              code: data.phone?.substring(0, 3) || "",
+              number: data.phone?.substring(3) || ""
+            },
+            city: data.city || "",
+            specialization: data.specialty || "",
+            experience: data.experience || "",
+            education: data.education || "",
+            license: data.license || "",
+          }));
         }
       } catch (error) {
         console.error("Failed to fetch profile:", error);
@@ -81,15 +105,30 @@ const DoctorProfile = () => {
 
     setIsLoading(true);
     try {
-      // Convert our date format to API format
-      const dateOfBirth = new Date(
-        `${tempProfile.dob.year}-${tempProfile.dob.month}-${tempProfile.dob.day}`
-      ).toISOString();
+      // Validate DOB before creating Date object
+      const { day, month, year } = tempProfile.dob;
+      console.log('DOB values before new Date():', { day, month, year }); // Debugging log
+
+      if (!day || !month || !year || isNaN(parseInt(day)) || isNaN(parseInt(month)) || isNaN(parseInt(year))) {
+        toast.error("Please select a complete and valid date of birth.");
+        setIsLoading(false);
+        return;
+      }
+
+      const dateObject = new Date(`${year}-${month}-${day}`);
+      console.log('Date object after creation:', dateObject); // Debugging log
+
+      if (isNaN(dateObject.getTime())) {
+        toast.error("Invalid date of birth provided. Please check the date.");
+        setIsLoading(false);
+        return;
+      }
+      const dateOfBirth = dateObject.toISOString();
 
       const profileData = {
         firstName: tempProfile.firstName,
         lastName: tempProfile.lastName,
-        Status: tempProfile.status,
+        status: tempProfile.status,
         city: tempProfile.city,
         country: tempProfile.country,
         dateOfBirth,
@@ -178,7 +217,7 @@ const DoctorProfile = () => {
             <p className={styles.experience}>{profile.experience} Experience</p>
           </div>
         </div>
-        <div className={styles.actionButtons}>
+        <div className={styles.actionButtons}> {/* Temporary style for debugging button visibility */}
           {isEditing ? (
             <>
               <button

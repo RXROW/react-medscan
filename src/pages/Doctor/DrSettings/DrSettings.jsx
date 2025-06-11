@@ -64,64 +64,13 @@ const PatientSettings = () => {
 
       <div className={styles.contentContainer}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>PERSONAL SETTINGS</h2>
+          <h2 className={styles.sectionTitle}> </h2>
           <div className={styles.actionButtons}>
             <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
             <button className={styles.saveButton} onClick={handleSave}>Save</button>
           </div>
         </div>
-
-        <div className={styles.card}>
-          <h3 className={styles.cardTitle}>PROFILE DETAILS</h3>
-          <div className={styles.formRow}>
-            <div className={styles.formGroup}>
-              <label htmlFor="firstName">First Name</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <input type="text" id="firstName" value={profile.firstName} onChange={handleChange} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="lastName">Last Name</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <input type="text" id="lastName" value={profile.lastName} onChange={handleChange} />
-            </div>
-          </div>
-          <div className={styles.formRow}>
-            <div className={styles.formGroup}>
-              <label htmlFor="country">Country</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <select id="country" value={profile.country} onChange={handleChange}>
-                <option value="Egypt">Egypt</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Canada">Canada</option> {/* Added more options for realism */}
-                <option value="Germany">Germany</option>
-              </select>
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="phoneNumber">Phone Number</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <input type="text" id="phoneNumber" value={profile.phoneNumber} onChange={handleChange} />
-            </div>
-          </div>
-          <div className={styles.formRow}>
-            <div className={styles.formGroup}>
-              <label htmlFor="city">City</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <select id="city" value={profile.city} onChange={handleChange}>
-                <option value="Cairo">Cairo</option>
-                <option value="Alexandria">Alexandria</option>
-                <option value="Giza">Giza</option> {/* Added more options */}
-                <option value="Luxor">Luxor</option>
-              </select>
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="zipCode">ZIP Code</label>
-              {/* Made editable, value from state, onChange updates state */}
-              <input type="text" id="zipCode" value={profile.zipCode} onChange={handleChange} />
-            </div>
-          </div>
-        </div>
-
+ 
         <h2 className={styles.sectionTitle}>PRIVACY & SECURITY</h2>
         <div className={styles.card}>
           <div className={styles.formRow}>

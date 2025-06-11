@@ -7,6 +7,12 @@ import { CHAT_BOT } from "../../../services/api";
 import { LuSendHorizontal } from 'react-icons/lu';
 import { IoImageOutline } from 'react-icons/io5';
 import { IoCloseCircleOutline } from 'react-icons/io5';
+import { LiaCommentsSolid } from 'react-icons/lia';
+import { VscSparkle } from 'react-icons/vsc';
+import { PiShieldWarningLight } from 'react-icons/pi';
+import { MdDelete } from 'react-icons/md';
+import only from "../../../assets/images/chatbot/only1.PNG";
+import styles1 from '../../../components/ChatbotCss/Chatbot.module.css';
 
 const DoctorChatbot = () => {
   const { userId, authLoading } = useAuthContext();
@@ -23,13 +29,7 @@ const DoctorChatbot = () => {
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
     } else {
-      // Add initial welcome message only if no saved messages
-      setMessages([
-        {
-          type: 'bot',
-          content: 'Hello! I am your medical assistant. How can I help you today?'
-        }
-      ]);
+      // Removed the initial welcome message
     }
   }, [userId]);
 
@@ -178,12 +178,52 @@ const DoctorChatbot = () => {
     }
   };
 
+  const handleClearChat = () => {
+    localStorage.removeItem(`chatbotMessages_${userId}`);
+    setMessages([]);
+  };
+
   console.log('Current messages:', messages);
 
   return (
     <div className={styles.container}>
       <div className={styles.chatArea}>
-        <ChatbotMainContent messages={messages} loading={loading} />
+        {messages.length === 0 ? (
+          <div className={styles.main}>
+            <div className={styles.brandContainer}>
+              <img src={only} alt="MedScan Logo" className={styles.logo} />
+              <h1 className={styles.brand}>MEDSCAN</h1>
+            </div>
+
+            <div className={styles.infoGrid}>
+              <div className={styles.infoBox}>
+                <LiaCommentsSolid className={styles.infoIcon} />
+                <h3>Examples</h3>
+                <p>"Analyze this chest X-ray for potential issues"</p>
+                <p>"What does a mild disc bulge mean?"</p>
+                <p>"Suggest a specialist for my scan results"</p>
+              </div>
+
+              <div className={styles.infoBox}>
+                <VscSparkle className={styles.infoIcon} />
+                <h3>Capabilities</h3>
+                <p>Processes medical scans and provides an initial diagnosis</p>
+                <p>Suggests precautions before consulting a doctor</p>
+                <p>Recommends top-rated doctors based on your location</p>
+              </div>
+
+              <div className={styles.infoBox}>
+                <PiShieldWarningLight className={styles.infoIcon} />
+                <h3>Limitations</h3>
+                <p>Cannot replace professional medical advice</p>
+                <p>Accuracy depends on scan quality and AI model training</p>
+                <p>Does not support real-time emergency diagnosis</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <ChatbotMainContent messages={messages} loading={loading} />
+        )}
         <footer className={styles.footer}>
           <div className={styles.inputContainer}>
             <IoImageOutline
@@ -191,15 +231,8 @@ const DoctorChatbot = () => {
               onClick={handleImageUploadClick}
               style={{ cursor: loading || authLoading ? 'not-allowed' : 'pointer' }}
             />
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-              accept="image/*"
-            />
 
-            {selectedFile && imagePreviewUrl && ( // Render image preview above the input
+            {selectedFile && imagePreviewUrl && (
               <div className={styles.imagePreviewWrapper}>
                 <img src={imagePreviewUrl} alt="Selected" className={styles.imagePreview} />
                 <IoCloseCircleOutline
@@ -213,14 +246,27 @@ const DoctorChatbot = () => {
             <input
               className={styles.input}
               type="text"
-              placeholder={selectedFile ? "Add a message with your image..." : "Type your message here..."} // Dynamic placeholder
+              placeholder={selectedFile ? "Add a message with your image..." : "Type your message here..."}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
               disabled={loading || authLoading}
             />
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+              accept="image/*"
+            />
 
             <div className={styles.rightIcons}>
+              <MdDelete
+                className={styles.clearChatButton}
+                onClick={handleClearChat}
+                style={{ cursor: loading || authLoading ? 'not-allowed' : 'pointer' }}
+                title="Clear Chat"
+              />
               <button
                 className={`${styles.sendButton} ${loading || authLoading || (!message.trim() && !selectedFile) ? styles.disabled : ''}`}
                 onClick={handleSend}
