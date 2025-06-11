@@ -97,6 +97,7 @@ export const DOCTOR_RECOMMENDATION = {
 
 
 export const PATIENT_PROFILE = {
+  Get_Patient_Profile: (patientId) => `patient/${patientId}`,
   Update_Patient_Profile: (patientId) => `patient/${patientId}`,
   Delete_Patient_Profile: (patientId) => `patient/${patientId}`,
 };

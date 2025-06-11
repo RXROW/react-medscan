@@ -19,6 +19,7 @@
   flex-direction: column;
   overflow: hidden; /* ✅ يمنع ظهور Scroll */
   background-color: #f5f7fa;
+  margin-top: 88px;
 }
 
 /* --- PatientScans specific styling (already mostly good, just ensuring alignment) --- */

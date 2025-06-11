@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  margin-top: 65px;
 }
 
 .doctorRecommendation {
@@ -145,41 +146,50 @@
   font-size: 13px;
   color: #555;
   text-align: center; /* Center the text below the icon */
-  width: 70px; /* Give a fixed width to each item for consistent spacing */
+  width: auto; /* Give a fixed width to each item for consistent spacing */
   transition: transform 0.2s ease, color 0.2s ease; /* Smooth transition for hover */
 }
+ 
 
 .specialtyItem:hover {
   transform: translateY(-3px); /* Slight lift effect */
   color: #007bff; /* Change text color on hover */
 }
 
+.specialtyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
 .iconContainer {
-  width: 60px; /* Slightly larger for the square shape */
+  width: 60px;
   height: 60px;
-  background-color: #f0f8ff; /* Light blue background */
-  border: 1px dotted #a8d5ff; /* Light blue dotted border */
-  border-radius: 10px; /* Square with slight rounded corners */
+  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 8px; /* Space between icon and text */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  justify-content: center;
+  background-color: #f5f5f5;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 2px solid transparent;
 }
 
-.iconContainer img {
-  width: 35px; /* Adjust icon size within the container */
-  height: 35px;
-  object-fit: contain; /* Ensures the image scales properly */
+.iconContainer:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles for the selected specialty */
 .selectedSpecialty {
-  background-color: #e0f2ff; /* Slightly darker blue for selected background */
-  border: 2px solid #007bff; /* Solid blue border for selected */
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3); /* Blue glowing effect */
+  border-color: #007bff;
+  background-color: #e6f3ff;
+}
+
+.selectedSpecialty .specialtyImage {
+  transform: scale(1.1);
 }
 
 .selectedSpecialty + span {
@@ -197,7 +207,7 @@
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -332,26 +342,51 @@
   line-height: 1.4;
 }
 
+.starsContainer {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.starIcon {
+  color: #ffc107;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.starIcon:hover {
+  transform: scale(1.1);
+}
+
+.halfStar {
+  position: relative;
+  color: #ffc107;
+}
+
+.halfStar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #e4e5e9;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.emptyStar {
+  color: #e4e5e9;
+}
+
 .rating {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 10px;
   background-color: #f8f9fa;
   padding: 8px 12px;
   border-radius: 20px;
   width: fit-content;
-}
-
-.ratingStars {
-  color: #ffc107;
-  font-size: 16px;
-}
-
-.ratingText {
-  color: #555;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .reviewRatings {
@@ -363,12 +398,16 @@
 .reviewRating {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 13px;
   color: #666;
   background-color: #f8f9fa;
   padding: 5px 10px;
   border-radius: 15px;
+}
+
+.reviewRating .starsContainer {
+  margin-right: 4px;
 }
 
 .specialization {

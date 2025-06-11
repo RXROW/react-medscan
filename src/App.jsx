@@ -63,7 +63,7 @@ function App() {
           <Route path="/medical-history" element={<MedicalHistory />} />
           <Route path="/doctor-recommendation" element={<DoctorRecommendation />} />
           <Route path="/patient-scans" element={<PatientScans />} />
-          <Route path="/patient-settings" element={<PatientSettings />} />
+          <Route path="/patient-settings" element={< DrSettings />} />
           <Route path="/patient-profile" element={<PatientProfile />} />
          
           <Route path="/madvices" element={<Madvices />} />

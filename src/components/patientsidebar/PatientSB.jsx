@@ -1,17 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaHandHoldingMedical, FaUserFriends, FaRegUser } from "react-icons/fa";
 import { LiaHistorySolid } from "react-icons/lia";
 import { MdDocumentScanner } from "react-icons/md";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
+import { toast } from 'react-toastify';
 
 import styles from "../patientsidebar/PatientSB.module.css";
 import logo from "../../../public/logo.png";
 import { useAuthContext } from "../../Context/AuthContext";
 
 const PatientSidebar = () => {
-  const { userRole } = useAuthContext();
+  const { userRole, logout } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      toast.success('Logged out successfully');
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      toast.error('Failed to logout. Please try again.');
+    }
+  };
 
   const renderPatientLinks = () => (
     <aside className={styles.sidebar}>
@@ -89,9 +103,10 @@ const PatientSidebar = () => {
       </NavLink>
 
       <div className={styles.profile}>
-        <NavLink to="/logout">
+        <button onClick={handleLogout} className={styles.logoutButton}>
           <IoExitOutline className={styles.exitIcon} />
-        </NavLink>
+          <span>Logout</span>
+        </button>
       </div>
     </aside>
   );
@@ -145,9 +160,10 @@ const PatientSidebar = () => {
       </NavLink>
 
       <div className={styles.profile}>
-        <NavLink to="/logout">
+        <button onClick={handleLogout} className={styles.logoutButton}>
           <IoExitOutline className={styles.exitIcon} />
-        </NavLink>
+          <span>Logout</span>
+        </button>
       </div>
     </aside>
   );

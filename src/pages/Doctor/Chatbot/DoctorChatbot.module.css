@@ -17,7 +17,7 @@
   background-color: #fff; /* White background for the chatbox */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
- overflow-y:scroll;
+ overflow-y:auto;
   position: relative;
 }
 

@@ -1,34 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../DrRecommendation/DrRecommendation.module.css';
-import { FaUserMd, FaStethoscope, FaTooth, FaBaby, FaFlask, FaDisease, FaBrain, FaHeartbeat, FaFemale, FaUserInjured, FaEye, FaExclamationCircle, FaTimes, FaMapMarkerAlt, FaClock, FaPhone, FaMoneyBillWave, FaStar, FaCalendarAlt, FaUser } from 'react-icons/fa';
+import { FaUserMd, FaExclamationCircle, FaTimes, FaMapMarkerAlt, FaClock, FaPhone, FaMoneyBillWave, FaStar, FaCalendarAlt } from 'react-icons/fa';
 import { privateInstance, DOCTOR_RECOMMENDATION } from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
 
 
+import orthopedicIcon from '../../../assets/images/patientimages/orthopedic.png';
+import dermatologyIcon from '../../../assets/images/patientimages/dermatology.png';
+import dentistryIcon from '../../../assets/images/patientimages/dendist.png';
+import pediatricsIcon from '../../../assets/images/patientimages/pediatrics.png';
+import nephrologyIcon from '../../../assets/images/patientimages/urology.png';
+import neurosurgeryIcon from '../../../assets/images/patientimages/phycatry.png';
+import cardiologyIcon from '../../../assets/images/patientimages/cardiology.png';
+import gynecologyIcon from '../../../assets/images/patientimages/gynecology.png';
+import internistIcon from '../../../assets/images/patientimages/gastrology.png';
+import ophthalmologyIcon from '../../../assets/images/patientimages/eyeproblem.png';
 
 // Data for hospitals based on city
 const hospitalsByCity = {
-  Cairo: [
-    'Cleopatra Hospital',
-    'Al Salam Hospital',
-    'Dar Al Fouad Hospital',
-    'As-Salam International Hospital'
-  ],
-  Alexandria: [
-    'Alexandria University Hospital',
-    'Pharos Hospital',
-    'Andalusia Smouha Hospital'
-  ],
-  Giza: [
-    'Agouza Hospital',
-    'Giza International Hospital',
-    'Al Mokattam Hospital'
-  ],
-  Luxor: [
-    'Luxor International Hospital',
-    'Luxor General Hospital'
-  ],
-  // Add more cities and their hospitals as needed
+  'Maadi': ['Maadi Hospital', 'Dar Al Fouad Hospital'],
+  'Heliopolis': ['Heliopolis Hospital', 'Al Salam Hospital'],
+  'Nasr City': ['Nasr City Hospital', 'Al Shorouk Hospital'],
+  'Zamalek': ['Zamalek Hospital', 'Royal Hospital'],
+  'Giza': ['Giza Hospital', 'Al Mokattam Hospital'],
+  'Shubra': ['Shubra Hospital', 'Al Shubra Hospital'],
+  'Dokki': ['Dokki Hospital', 'Al Dokki Hospital'],
+  'New Cairo': ['New Cairo Hospital', 'Al Rehab Hospital'],
+  'Badr City': ['Badr Hospital', 'Al Badr Hospital'],
+  'Helwan': ['Helwan Hospital', 'Al Helwan Hospital'],
+  'Mohandessin': ['Mohandessin Hospital', 'Al Mohandessin Hospital'],
+  'Mokattam': ['Mokattam Hospital', 'Al Mokattam Hospital'],
+  'Dar Al Salam': ['Dar Al Salam Hospital', 'Al Salam Hospital'],
+  'Ain Shams': ['Ain Shams Hospital', 'Al Ain Shams Hospital'],
+  'Haram': ['Haram Hospital', 'Al Haram Hospital'],
+  'Madinet El Salam': ['Madinet El Salam Hospital', 'Al Salam Hospital'],
+  'Abbasia': ['Abbasia Hospital', 'Al Abbasia Hospital'],
+  'Marioutiya': ['Marioutiya Hospital', 'Al Marioutiya Hospital'],
+  'Zaytoun': ['Zaytoun Hospital', 'Al Zaytoun Hospital'],
+  'Al Gamaliya': ['Al Gamaliya Hospital', 'Gamaliya Hospital'],
+  'Manial': ['Manial Hospital', 'Al Manial Hospital'],
+  'El Shorouk': ['El Shorouk Hospital', 'Al Shorouk Hospital'],
+  'Faisal': ['Faisal Hospital', 'Al Faisal Hospital'],
+  'Warraq': ['Warraq Hospital', 'Al Warraq Hospital'],
+  '26th of July Street': ['26th of July Hospital', 'Al July Hospital'],
+  'Bassetin': ['Bassetin Hospital', 'Al Bassetin Hospital'],
+  'Matareya': ['Matareya Hospital', 'Al Matareya Hospital'],
+  'Sayeda Zeinab': ['Sayeda Zeinab Hospital', 'Al Zeinab Hospital'],
+  'Downtown': ['Downtown Hospital', 'Al Downtown Hospital'],
+  'Sadat City': ['Sadat City Hospital', 'Al Sadat Hospital'],
+  'City Stars': ['City Stars Hospital', 'Al Stars Hospital'],
+  'Downtown Cairo': ['Downtown Cairo Hospital', 'Al Cairo Hospital'],
+  'New Heliopolis': ['New Heliopolis Hospital', 'Al Heliopolis Hospital'],
+  'El Tagamoa': ['El Tagamoa Hospital', 'Al Tagamoa Hospital'],
+  'South Cairo': ['South Cairo Hospital', 'Al South Hospital'],
+  '15th of May City': ['15th of May Hospital', 'Al May Hospital'],
+  'Salam City': ['Salam City Hospital', 'Al Salam Hospital'],
+  'Rehab': ['Rehab Hospital', 'Al Rehab Hospital'],
+  'Cairo International Airport': ['Airport Hospital', 'Al Airport Hospital'],
+  'Qasr El Nile': ['Qasr El Nile Hospital', 'Al Nile Hospital'],
+  'Katameya': ['Katameya Hospital', 'Al Katameya Hospital'],
+  'New Abbasia': ['New Abbasia Hospital', 'Al Abbasia Hospital'],
+  'Tahrir Square': ['Tahrir Hospital', 'Al Tahrir Hospital'],
+  'Ramses Station': ['Ramses Hospital', 'Al Ramses Hospital'],
+  'Golf Land': ['Golf Land Hospital', 'Al Golf Hospital'],
+  'Al Oroba': ['Al Oroba Hospital', 'Oroba Hospital'],
+  'Main Imbaba Street': ['Imbaba Hospital', 'Al Imbaba Hospital'],
+  'New Future City': ['Future Hospital', 'Al Future Hospital'],
+  'Moneeb': ['Moneeb Hospital', 'Al Moneeb Hospital'],
+  'Khalifa': ['Khalifa Hospital', 'Al Khalifa Hospital'],
+  'Zayed City': ['Zayed Hospital', 'Al Zayed Hospital'],
+  'Makarem Obaid Street': ['Makarem Hospital', 'Al Makarem Hospital'],
+  'Omrania': ['Omrania Hospital', 'Al Omrania Hospital'],
+  'Shubra El Kheima': ['Shubra El Kheima Hospital', 'Al Kheima Hospital'],
+  'Manial Island': ['Manial Island Hospital', 'Al Island Hospital'],
+  'Zahra El Maadi': ['Zahra Hospital', 'Al Zahra Hospital'],
+  'Cairo University Street': ['Cairo University Hospital', 'Al University Hospital'],
+  'Faisal Square': ['Faisal Square Hospital', 'Al Square Hospital'],
+  'Citadel Square': ['Citadel Hospital', 'Al Citadel Hospital'],
+  'Nile Corniche': ['Nile Hospital', 'Al Nile Hospital'],
+  'Mustafa Nahas': ['Mustafa Nahas Hospital', 'Al Nahas Hospital'],
+  'Boulaq': ['Boulaq Hospital', 'Al Boulaq Hospital'],
+  'Azhar Street': ['Azhar Hospital', 'Al Azhar Hospital'],
+  'Maadi Plateau': ['Maadi Plateau Hospital', 'Al Plateau Hospital'],
+  'Dokki Street': ['Dokki Street Hospital', 'Al Dokki Hospital']
 };
 
 const DoctorRecommendation = () => {
@@ -57,18 +111,45 @@ const DoctorRecommendation = () => {
   // Mapping for selectedDoctorType to actual specialty strings for API
   const doctorTypeToSpecialtyMap = {
     'All Doctors': '', // Empty string for no specialty filter
-    'Cardiologists': 'Cardiology',
-    'Dermatologists': 'Dermatology',
-    'Neurologists': 'Neurology',
-    'Orthopedic Surgery': 'Orthopedic Surgery',
-    'Dentistry': 'Dentistry',
-    'Pediatrics': 'Pediatrics',
-    'Nephrology': 'Nephrology',
-    'Oncology': 'Oncology',
-    'Neurosurgery': 'Neurosurgery',
-
+    'Physiotherapist': 'Physiotherapist',
+    'Urologist': 'Urologist',
+    'Pediatrician': 'Pediatrician',
+    'Cardiologist': 'Cardiologist',
+    'Ophthalmologist': 'Ophthalmologist',
+    'Neurosurgeon': 'Neurosurgeon',
+    'Gynecologist': 'Gynecologist',
+    'Dermatologist': 'Dermatologist',
+    'Dentist': 'Dentist',
+    'Orthopedist': 'Orthopedist',
+    'General Surgeon': 'General Surgeon',
+    'Nephrologist': 'Nephrologist',
+    'Neurologist': 'Neurologist',
+    'ENT Doctor': 'ENT Doctor',
     'Internist': 'Internist',
-    'Ophthalmology': 'Ophthalmology',
+    'Cardiothoracic Surgeon': 'Cardiothoracic Surgeon',
+    'Psychiatrist': 'Psychiatrist',
+    'Endocrinologist': 'Endocrinologist'
+  };
+
+  const specialtyIcons = {
+    'Physiotherapist': orthopedicIcon,
+    'Urologist': nephrologyIcon,
+    'Pediatrician': pediatricsIcon,
+    'Cardiologist': cardiologyIcon,
+    'Ophthalmologist': ophthalmologyIcon,
+    'Neurosurgeon': neurosurgeryIcon,
+    'Gynecologist': gynecologyIcon,
+    'Dermatologist': dermatologyIcon,
+    'Dentist': dentistryIcon,
+    'Orthopedist': orthopedicIcon,
+    'General Surgeon': orthopedicIcon,
+    'Nephrologist': nephrologyIcon,
+    'Neurologist': neurosurgeryIcon,
+    'ENT Doctor': internistIcon,
+    'Internist': internistIcon,
+    'Cardiothoracic Surgeon': cardiologyIcon,
+    'Psychiatrist': neurosurgeryIcon,
+    'Endocrinologist': internistIcon
   };
 
   // Effect to update available hospitals when selectedCity changes
@@ -90,8 +171,8 @@ const DoctorRecommendation = () => {
       setError(null);
       try {
         let response;
-        const limit = 10; // You might want to make this dynamic later
-        const page = 1;   // You might want to make this dynamic later
+        const limit = 10;
+        const page = 1;
 
         const currentSpecialty = selectedSpecialty;
         const currentCity = selectedCity;
@@ -99,12 +180,12 @@ const DoctorRecommendation = () => {
         const options = {
           limit,
           page,
-          ...(searchQuery && { search: searchQuery }), // Add search query if present
+          ...(searchQuery && { search: searchQuery }),
           ...(selectedTitle && { title: selectedTitle }),
           ...(selectedGender && { gender: selectedGender }),
-          ...(selectedRating && { rating: selectedRating }), // Assuming API uses 'rating'
-          ...(selectedAvailability && { availability: selectedAvailability }), // Assuming API uses 'availability'
-          ...(selectedFees && { fees: selectedFees }), // Assuming API uses 'fees'
+          ...(selectedRating && { rating: selectedRating }),
+          ...(selectedAvailability && { availability: selectedAvailability }),
+          ...(selectedFees && { fees: selectedFees }),
         };
 
         if (currentSpecialty && currentCity !== 'Cairo') {
@@ -139,13 +220,13 @@ const DoctorRecommendation = () => {
             name: doc.name || 'N/A',
             title: doc.description || 'Doctor',
             specialty: doc.specialization || 'N/A',
-            overallRating: doc.rating || 0,
+            overallRating: doc.avg_rate || 0,
             visitors: doc.num_visitors || 0,
             hygieneRating: doc.hygiene_rating || 0,
-            goodListenerRating: doc.listener_rating || 0,
+            goodListenerRating: doc.good_listener_rating || 0,
             subSpecialties: Array.isArray(doc.sub_specializations) ? doc.sub_specializations : [],
             location: doc.clinic_location || 'N/A',
-            fees: doc.fees || 0,
+            fees: doc.fees || '0 EGP',
             waitingTime: doc.waiting_time || 'N/A',
             callCost: doc.call_cost || 'N/A',
             availability: doc.availability || 'N/A',
@@ -185,21 +266,6 @@ const DoctorRecommendation = () => {
     // Assuming you have an input for searchQuery that updates the state
   };
 
-  const specialtyIcons = {
-    'Orthopedic Surgery': <FaUserInjured size={24} />,
-    'Dermatology': <FaUserMd size={24} />,
-    'Dentistry': <FaTooth size={24} />,
-    'Pediatrics': <FaBaby size={24} />,
-    'Nephrology': <FaFlask size={24} />,
-    'Oncology': <FaDisease size={24} />,
-    'Neurosurgery': <FaBrain size={24} />,
-    'Cardiology': <FaHeartbeat size={24} />,
-
-    'Internist': <FaStethoscope size={24} />,
-    'Ophthalmology': <FaEye size={24} />,
-    'Neurology': <FaBrain size={24} />,
-  };
-
   // No client-side filtering by searchQuery here as it's passed to the API
   const filteredDoctors = doctors;
 
@@ -223,6 +289,42 @@ const DoctorRecommendation = () => {
   const handleCloseDetails = () => {
     setSelectedDoctor(null);
     setDoctorDetails(null);
+  };
+
+  const renderStars = (rating) => {
+    if (!rating || rating === 0) {
+      return Array(5).fill(null).map((_, index) => (
+        <FaStar key={`empty-${index}`} className={`${styles.starIcon} ${styles.emptyStar}`} />
+      ));
+    }
+
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <FaStar key={`full-${i}`} className={styles.starIcon} />
+      );
+    }
+
+    // Add half star if needed
+    if (hasHalfStar) {
+      stars.push(
+        <FaStar key="half" className={`${styles.starIcon} ${styles.halfStar}`} />
+      );
+    }
+
+    // Add empty stars
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(
+        <FaStar key={`empty-${i}`} className={`${styles.starIcon} ${styles.emptyStar}`} />
+      );
+    }
+
+    return stars;
   };
 
   if (loading) {
@@ -341,9 +443,24 @@ const DoctorRecommendation = () => {
                   onChange={handleDoctorTypeChange}
                 >
                   <option value="All Doctors">All Doctors</option>
-                  <option value="Cardiologists">Cardiologists</option>
-                  <option value="Dermatologists">Dermatologists</option>
-                  <option value="Neurologists">Neurologists</option>
+                  <option value="Physiotherapist">Physiotherapist</option>
+                  <option value="Urologist">Urologist</option>
+                  <option value="Pediatrician">Pediatrician</option>
+                  <option value="Cardiologist">Cardiologist</option>
+                  <option value="Ophthalmologist">Ophthalmologist</option>
+                  <option value="Neurosurgeon">Neurosurgeon</option>
+                  <option value="Gynecologist">Gynecologist</option>
+                  <option value="Dermatologist">Dermatologist</option>
+                  <option value="Dentist">Dentist</option>
+                  <option value="Orthopedist">Orthopedist</option>
+                  <option value="General Surgeon">General Surgeon</option>
+                  <option value="Nephrologist">Nephrologist</option>
+                  <option value="Neurologist">Neurologist</option>
+                  <option value="ENT Doctor">ENT Doctor</option>
+                  <option value="Internist">Internist</option>
+                  <option value="Cardiothoracic Surgeon">Cardiothoracic Surgeon</option>
+                  <option value="Psychiatrist">Psychiatrist</option>
+                  <option value="Endocrinologist">Endocrinologist</option>
                 </select>
               </div>
 
@@ -357,7 +474,7 @@ const DoctorRecommendation = () => {
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
                 >
-                  {Object.keys(hospitalsByCity).map(city => (
+                  {Object.keys(hospitalsByCity).sort().map(city => (
                     <option key={city} value={city}>{city}</option>
                   ))}
                 </select>
@@ -405,7 +522,7 @@ const DoctorRecommendation = () => {
                       : styles.iconContainer
                   }
                 >
-                  {icon}
+                  <img src={icon} alt={name} className={styles.specialtyImage} />
                 </div>
                 <span>{name}</span>
               </div>
@@ -430,11 +547,10 @@ const DoctorRecommendation = () => {
             </select>
             <select className={styles.filterDropdown} value={selectedRating} onChange={(e) => setSelectedRating(e.target.value)}>
               <option value="">Rating</option>
-              <option value="1">1 Star ⭐</option>
-              <option value="2">2 Stars ⭐⭐</option>
-              <option value="3">3 Stars ⭐⭐⭐</option>
-              <option value="4">4 Stars ⭐⭐⭐⭐</option>
-              <option value="5">5 Stars ⭐⭐⭐⭐⭐</option>
+              <option value="4">4+ Stars</option>
+              <option value="3">3+ Stars</option>
+              <option value="2">2+ Stars</option>
+              <option value="1">1+ Star</option>
             </select>
             <select className={styles.filterDropdown} value={selectedAvailability} onChange={(e) => setSelectedAvailability(e.target.value)}>
               <option value="">Availability</option>
@@ -463,9 +579,9 @@ const DoctorRecommendation = () => {
                   <div className={styles.doctorImageContainer}>
                     <img
                       src={"https://via.placeholder.com/150?text=Dr"}
-                     
+
                       className={styles.doctorImage}
-                      
+
                     />
                     <div className={styles.doctorImageOverlay}>
                       <FaUserMd size={30} color="#ffffff" />
@@ -477,9 +593,9 @@ const DoctorRecommendation = () => {
                     </h3>
                     <p className={styles.doctorTitle}>{doctor.title}</p>
                     <div className={styles.rating}>
-                      <span className={styles.ratingStars}>
-                        {'⭐'.repeat(Math.floor(doctor.overallRating))}
-                      </span>
+                      <div className={styles.starsContainer}>
+                        {renderStars(doctor.overallRating)}
+                      </div>
                       <span className={styles.ratingText}>
                         {doctor.overallRating} Overall Rating from {doctor.visitors} Visitors
                       </span>
@@ -487,12 +603,18 @@ const DoctorRecommendation = () => {
                     <div className={styles.reviewRatings}>
                       {doctor.hygieneRating && (
                         <div className={styles.reviewRating}>
-                          <FaStar /> Hygiene: {doctor.hygieneRating}
+                          <div className={styles.starsContainer}>
+                            {renderStars(doctor.hygieneRating)}
+                          </div>
+                          <span>Hygiene</span>
                         </div>
                       )}
                       {doctor.goodListenerRating && (
                         <div className={styles.reviewRating}>
-                          <FaStar /> Good Listener: {doctor.goodListenerRating}
+                          <div className={styles.starsContainer}>
+                            {renderStars(doctor.goodListenerRating)}
+                          </div>
+                          <span>Good Listener</span>
                         </div>
                       )}
                     </div>

@@ -62,8 +62,7 @@ const DoctorDashboard = () => {
     setError(null);
 
     try {
-      // Add artificial delay of 2 seconds
-      await new Promise(resolve => setTimeout(resolve, 2000));
+     
 
       const response = await privateInstance.get(DOCTOR.Get_All_Patients_Of_Doctor(userId));
 
