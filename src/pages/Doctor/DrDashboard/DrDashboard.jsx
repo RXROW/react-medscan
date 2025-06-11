@@ -50,41 +50,45 @@ const DoctorDashboard = () => {
   });
   const navigate = useNavigate();
 
-  // Fetch patients data
-  useEffect(() => {
-    const loadPatients = async () => {
-      if (!userId) {
-        setError("Doctor ID is missing");
-        setIsLoading(false);
-        return;
-      }
+  // Function to fetch patients data
+  const fetchPatients = async () => {
+    if (!userId) {
+      setError("Doctor ID is missing");
+      setIsLoading(false);
+      return;
+    }
 
-      setIsLoading(true);
-      setError(null);
+    setIsLoading(true);
+    setError(null);
 
-      try {
-        const response = await privateInstance.get(DOCTOR.Get_All_Patients_Of_Doctor(userId));
+    try {
+      // Add artificial delay of 2 seconds
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-        if (response.data && response.data.status === "success" && Array.isArray(response.data.data)) {
-          setPatients(response.data.data);
-        } else {
-          setPatients([]);
-          setError("No patients data received or invalid response format");
-        }
-      } catch (error) {
-        console.error("Failed to load patients:", error);
+      const response = await privateInstance.get(DOCTOR.Get_All_Patients_Of_Doctor(userId));
+
+      if (response.data && response.data.status === "success" && Array.isArray(response.data.data)) {
+        setPatients(response.data.data);
+      } else {
         setPatients([]);
-        setError(
-          error.response?.data?.message ||
-          error.message ||
-          "Failed to load patients. Please try again later."
-        );
-      } finally {
-        setIsLoading(false);
+        setError("No patients data received or invalid response format");
       }
-    };
+    } catch (error) {
+      console.error("Failed to load patients:", error);
+      setPatients([]);
+      setError(
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to load patients. Please try again later."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    loadPatients();
+  // Initial fetch
+  useEffect(() => {
+    fetchPatients();
   }, [userId]);
 
   const handleAddPatient = async (e) => {
@@ -94,29 +98,46 @@ const DoctorDashboard = () => {
       return;
     }
 
+    setIsLoading(true);
     try {
+      // Add artificial delay of 2 seconds
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Validate date fields before sending
+      const validatedMedications = newPatient.medications.map(med => {
+        let time = med.time;
+        if (time) {
+          const date = new Date(time);
+          if (isNaN(date.getTime())) {
+            throw new Error("Invalid medication time format");
+          }
+          time = date.toISOString();
+        }
+        return {
+          ...med,
+          time
+        };
+      });
+
       const patientData = {
         patientName: newPatient.patientName,
         location: newPatient.location,
         bloodGlucoseLevel: newPatient.bloodGlucoseLevel,
         weight: {
-          value: parseFloat(newPatient.weight.value),
+          value: parseFloat(newPatient.weight.value) || 0,
           unit: newPatient.weight.unit
         },
         height: {
-          value: parseFloat(newPatient.height.value),
+          value: parseFloat(newPatient.height.value) || 0,
           unit: newPatient.height.unit
         },
-        oxygenSaturation: parseFloat(newPatient.oxygenSaturation),
-        bodyTemperature: parseFloat(newPatient.bodyTemperature),
+        oxygenSaturation: parseFloat(newPatient.oxygenSaturation) || 0,
+        bodyTemperature: parseFloat(newPatient.bodyTemperature) || 0,
         bloodPressure: {
-          systolic: parseInt(newPatient.bloodPressure.systolic),
-          diastolic: parseInt(newPatient.bloodPressure.diastolic)
+          systolic: parseInt(newPatient.bloodPressure.systolic) || 0,
+          diastolic: parseInt(newPatient.bloodPressure.diastolic) || 0
         },
-        medications: newPatient.medications.map(med => ({
-          ...med,
-          time: new Date(med.time).toISOString()
-        })),
+        medications: validatedMedications,
         doctor: userId
       };
 
@@ -126,7 +147,7 @@ const DoctorDashboard = () => {
       );
 
       if (response.data) {
-        setPatients(Array.isArray(patients) ? [...patients, response.data] : [response.data]);
+        // Close modal and reset form
         setShowAddPatientModal(false);
         setNewPatient({
           patientName: "",
@@ -140,12 +161,18 @@ const DoctorDashboard = () => {
           medications: [{ name: "", dose: "", time: "" }]
         });
         setError(null);
-      }
-      toast.success('Add patient successful');
 
+        // Show success message
+        toast.success('Patient added successfully');
+
+        // Refresh the patients list
+        await fetchPatients();
+      }
     } catch (error) {
       console.error("Failed to add patient", error);
-      setError(error.response?.data?.message || "Failed to add patient");
+      toast.error(error.message || "Failed to add patient");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -180,14 +207,24 @@ const DoctorDashboard = () => {
   };
 
   const formatDate = (dateString) => {
-    const options = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    };
-    return new Date(dateString).toLocaleString('en-US', options);
+    if (!dateString) return "N/A";
+
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return "Invalid Date";
+
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      return date.toLocaleString('en-US', options);
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return "Invalid Date";
+    }
   };
 
   const handleDeletePatient = async (patientId) => {
@@ -229,13 +266,16 @@ const DoctorDashboard = () => {
   };
 
   const filteredAndSortedPatients = patients
-    .filter(patient =>
-      patient.patientName.toLowerCase().includes(filters.search.toLowerCase()) ||
-      patient.location.toLowerCase().includes(filters.search.toLowerCase())
-    )
+    .filter(patient => {
+      const searchTerm = filters.search.toLowerCase();
+      const patientName = (patient?.patientName || "").toLowerCase();
+      const location = (patient?.location || "").toLowerCase();
+
+      return patientName.includes(searchTerm) || location.includes(searchTerm);
+    })
     .sort((a, b) => {
-      const aValue = a[filters.sortBy]?.toLowerCase() || "";
-      const bValue = b[filters.sortBy]?.toLowerCase() || "";
+      const aValue = (a[filters.sortBy] || "").toString().toLowerCase();
+      const bValue = (b[filters.sortBy] || "").toString().toLowerCase();
       return filters.sortOrder === "asc"
         ? aValue.localeCompare(bValue)
         : bValue.localeCompare(aValue);
@@ -261,13 +301,14 @@ const DoctorDashboard = () => {
               <button
                 className={styles.addButton}
                 onClick={() => setShowAddPatientModal(true)}
-                disabled={!userId}
+                disabled={!userId || isLoading}
               >
                 <span>+ Add Patient</span>
               </button>
               <button
                 className={styles.filterButton}
                 onClick={() => setShowFilterModal(true)}
+                disabled={isLoading}
               >
                 <HiOutlineAdjustments />
                 <span>Filter</span>
@@ -478,8 +519,27 @@ const DoctorDashboard = () => {
                   </div>
 
                   <div className={styles.modalButtons}>
-                    <button type="submit">Add Patient</button>
-                    <button type="button" onClick={() => setShowAddPatientModal(false)}>Cancel</button>
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className={styles.submitButton}
+                    >
+                      {isLoading ? (
+                        <div className={styles.buttonLoading}>
+                          <div className={styles.buttonSpinner}></div>
+                          <span>Adding Patient...</span>
+                        </div>
+                      ) : (
+                        'Add Patient'
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowAddPatientModal(false)}
+                      disabled={isLoading}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
@@ -488,8 +548,9 @@ const DoctorDashboard = () => {
 
           <div className={styles.tableContainer}>
             {isLoading ? (
-              <div style={{ textAlign: 'center', padding: '2rem' }}>
-                Loading patients...
+              <div className={styles.loadingContainer}>
+                <div className={styles.loadingSpinner}></div>
+                <p>Loading patients data...</p>
               </div>
             ) : (
               <table className={styles.patientTable}>

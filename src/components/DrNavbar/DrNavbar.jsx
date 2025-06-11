@@ -1,11 +1,37 @@
 // Navbar.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../DrNavbar/DrNavbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-  import drImg from "../../assets/images/drImages/profil.png";
- 
-const Navbar = ({ user }) => {
+import drImg from "../../assets/images/drImages/profil.png";
+import { useAuthContext } from '../../Context/AuthContext';
+import { privateInstance } from '../../services/api';
+import { DOCTOR } from '../../services/api';
+
+const Navbar = () => {
+  const { userId, userRole } = useAuthContext();
+  const [doctorName, setDoctorName] = useState({ firstName: "", lastName: "" });
+
+  useEffect(() => {
+    const fetchDoctorName = async () => {
+      if (!userId) return;
+      try {
+        const response = await privateInstance.get(DOCTOR.Update_Doctor_Profile(userId));
+        if (response.data && response.data.status === "success") {
+          const data = response.data.data;
+          setDoctorName({
+            firstName: data.firstName || "",
+            lastName: data.lastName || ""
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch doctor name:", error);
+      }
+    };
+
+    fetchDoctorName();
+  }, [userId]);
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftSection}>
@@ -31,11 +57,11 @@ const Navbar = ({ user }) => {
         <div className={styles.userInfo}>
           <img
             src={drImg}
-            alt={user?.name || "Doctor"}
+            alt={`${doctorName.firstName} ${doctorName.lastName}` || "Doctor"}
           />
           <div className={styles.userDetails}>
-            <span>{user?.name || "Dr. John Doe"}</span>
-            <span>{user?.role || "General Practitioner"}</span>
+            <span>{userRole === "doctor" ? `DR. ${doctorName.firstName} ${doctorName.lastName}` : `${doctorName.firstName} ${doctorName.lastName}`}</span>
+            <span>{"General Practitioner"}</span>
           </div>
           <FontAwesomeIcon icon={faChevronDown} className={styles.dropdownIcon} />
         </div>
