@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../DrProfile/DrProfile.module.css";
-import drImg from "../../../assets/images/drImages/profil.png";
+import drImg from "../../../assets/images/drimages/profil.png";
 import { privateInstance } from "../../../services/api";
 import { DOCTOR } from "../../../services/api";
 import { useAuthContext } from "../../../Context/AuthContext";
