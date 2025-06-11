@@ -324,7 +324,7 @@
   flex-direction: column;
   gap: 10px;
   scroll-behavior: smooth;
-  background-color: #f0f2f5;
+  background-color: #ffffff;
 }
 
 .message {

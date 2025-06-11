@@ -85,10 +85,10 @@
 }
 
 .illustration img {
-  width: 70%;
+  width: 86%;
   position: absolute;
-  bottom: -207px;
-  right: -12px;
+  bottom: -49%;
+  right:  -15%;
   transition: transform 0.3s ease;
 }
 
